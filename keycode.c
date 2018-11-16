@@ -12,13 +12,13 @@ struct userdb
 void practice(FILE *);         //done
 void showstats(FILE *);       //done
 void leaderboard(void);      //done
-int match(int);             //done
+int match(int);            //done
 int scoreupdate(FILE *);   //done
-void showques(int);       //done
+void showques(int);      //done
 void showans(void);      //done
 void welcome(void);     //done
 FILE* login(void);     //done
-FILE *getpos(void);   //done
+FILE *getpos(void);
 
 char username[15];
 int qnum=0;
@@ -36,8 +36,9 @@ int main()
         printf("  \033[1;35m==========================================================\033[0m\n\n"
             "\t \033[1;37m1) Practice                         3) Logout\n\n "
             "\t 2) Show Leaderboard                 4) Exit\n\n "
+            
             "\033[1;35m ==========================================================\033[0m\n"
-            "\t\t\033[7;37mYour Choice:\033[0m ");
+                "\t\033[7;37mYour Choice:\033[0m ");
 
         scanf("%d",&choice);
         printf("  \033[1;35m==========================================================\033[0m\n");
@@ -72,19 +73,18 @@ void practice(FILE *pos)
         getchar();
         system("nano sol.c");
     do{
-        printf("%s",    " \033[1;37m========================================================================\n"
-                        "  1.) View question again             5.) Submit your code\n\n "
+        printf("%s",    " \n\033[1;35m========================================================================\033[0m\n\n"
+                        "  \033[1;37m1.) View question again             5.) Submit your code\n\n "
                         " 2.) Open text editor again          6.) Show answer\n\n"
-                        "  3.) Compile                         0.) Go back\n\n"
-                        "  4.) Run with custom input\n\n"
-                        "========================================================================\033[0m\n"
+                        "  3.) Compile                         0.) Exit\n\n"
+                        "  4.) Run with custom input\n\n\033[0m"
+                        "\033[1;35m========================================================================\033[0m\n"
                         //"5.) Submit your code\n "
                         //"6.) Show answer\n "
                         //"0.) Exit\n\n "
-                        "\t   \033[7;37mYour Choice:\033[0m ");
+                        "\t\033[7;37mYour Choice:\033[0m ");
         scanf("%d",&choice);
-        pos=getpos();
-        printf(" \033[1;37m========================================================================\033[0m\n");
+        printf("\033[1;35m========================================================================\033[0m\n");
         switch(choice)
         {
             case 1: showques(qnum);
@@ -94,7 +94,8 @@ void practice(FILE *pos)
             case 3: val=system("gcc sol.c -o sol.out");
                     if(!val)
                     {
-                        printf("\n\033[1;32m-----------------Compilation Successful-----------------\033[0m\n");
+                       //printf("\n\033[1;32m-----------------Compilation Successful-----------------\033[0m\n");
+                        printf("\n\033[1;32m\t    ! ! ! ! Compilation Successful ! ! ! ! \033[0m\n");
                         comp=1;
                     }
                     else
@@ -131,10 +132,10 @@ void practice(FILE *pos)
                         val=match(qnum);
                         if(!val)
                         {
-                            printf("\n \033[0;32m\t\t!!!!  Answer matched  !!!!\n\t\t\033[0m\a");
+                            printf("\n \033[0;32m\t\t         !!!!  Answer matched  !!!!\n\033[0m\a");
                             if(!scoreupdate(pos))
-                                printf("\033[1;32m~~~~~~~~~~~~! Score Updated !~~~~~~~~~~~~\n\033[0m\a");
-                            qnum++;
+                                printf("\033[1;32m>>>>>>>>>>>>>>>>>>>>>>>>>>! Score Updated !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\033[0m\a");
+
                         }
                     }
                     else
@@ -171,7 +172,7 @@ FILE* login(void)
         if(!strcmp(f_user.uname,getuser.uname))
         {
             printf("\n\033[1;34m Welcome Back\033[0m \033[1;32m%s\033[0m\n",getuser.uname);
-            printf("``````````````````````````````````````\n");
+            printf("\033[1;37m``````````````````````````````````````\033[0m\n");
             flag=1;
             break;
         }
@@ -309,17 +310,17 @@ void showstats(FILE *pos)
     fread(&f_user,sizeof(f_user),1,fptr);
     qnum=f_user.no_of_ques;
     printf("\033[1;37m+-----------------------------------------------+\n");
-    printf("\033[1;37m|                                               |\n");
-    printf("\033[1;37m| \tUsername            :  %s             |\n"
-           "| \tQuestions solved    :  %d                |\n"
-           "| \tScore               :  %d               |\n\033[0m"
-           "\033[1;37m|                                               |\n",f_user.uname,f_user.no_of_ques,f_user.score);
+    printf("\033[1;37m                                               \n");
+    printf("\033[1;37m \tUsername            :  %s    \n"
+           " \tQuestions solved    :  %d                \n"
+           " \tScore               :  %d             \n\033[0m"
+           "\033[1;37m                                               \n",f_user.uname,f_user.no_of_ques,f_user.score);
     printf("\033[1;37m+-----------------------------------------------+\033[0m\n");
 }
 
+
 void welcome(void)
 {
-    system("clear");
     printf("\t\033[1;37m##########################################################################\033[0m\n"
            "\t\033[1;37m##                                                                      ##\033[0m\n"
            "\t\033[1;37m##\033[0m\t\033[1;34m ##  ##  ###### ##      ##\033[0m   \033[1;31m#####  #####  #####   ###### \033[0m\t\033[1;37m##\033[0m\n"
