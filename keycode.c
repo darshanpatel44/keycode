@@ -12,13 +12,13 @@ struct userdb
 void practice(FILE *);         //done
 void showstats(FILE *);       //done
 void leaderboard(void);      //done
-int match(int);            //done
+int match(int);             //done
 int scoreupdate(FILE *);   //done
-void showques(int);      //done
+void showques(int);       //done
 void showans(void);      //done
 void welcome(void);     //done
 FILE* login(void);     //done
-FILE *getpos(void); //done
+FILE *getpos(void);   //done
 
 char username[15];
 int qnum=0;
@@ -35,9 +35,10 @@ int main()
     do{
         printf("  \033[1;35m==========================================================\033[0m\n\n"
             "\t \033[1;37m1) Practice                         3) Logout\n\n "
-            "\t 2) Show Leaderboard                 4) Exit\n\n "    
+            "\t 2) Show Leaderboard                 4) Exit\n\n "
             "\033[1;35m ==========================================================\033[0m\n"
             "\t\t\033[7;37mYour Choice:\033[0m ");
+
         scanf("%d",&choice);
         printf("  \033[1;35m==========================================================\033[0m\n");
 
@@ -74,7 +75,7 @@ void practice(FILE *pos)
         printf("%s",    " \033[1;37m========================================================================\n"
                         "  1.) View question again             5.) Submit your code\n\n "
                         " 2.) Open text editor again          6.) Show answer\n\n"
-                        "  3.) Compile                         0.) Go Back\n\n"
+                        "  3.) Compile                         0.) Go back\n\n"
                         "  4.) Run with custom input\n\n"
                         "========================================================================\033[0m\n"
                         //"5.) Submit your code\n "
@@ -134,7 +135,6 @@ void practice(FILE *pos)
                             if(!scoreupdate(pos))
                                 printf("\033[1;32m~~~~~~~~~~~~! Score Updated !~~~~~~~~~~~~\n\033[0m\a");
                             qnum++;
-
                         }
                     }
                     else
