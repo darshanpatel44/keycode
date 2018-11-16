@@ -78,12 +78,17 @@ void practice(FILE *pos)
                         " 2.) Open text editor again          6.) Show answer\n\n"
                         "  3.) Compile                         0.) Exit\n\n"
                         "  4.) Run with custom input\n\n\033[0m"
-                        "\033[1;35m========================================================================\033[0m\n"
+                        "\033[1;35m===================================="
+                        "====================================\033[0m\n");
                         //"5.) Submit your code\n "
                         //"6.) Show answer\n "
                         //"0.) Exit\n\n "
-                        "\t\033[7;37mYour Choice:\033[0m ");
+
+        do{
+        printf("\t\033[7;37mYour Choice:\033[0m ");
         scanf("%d",&choice);
+        }while(choice<0||choice>6);
+        pos=getpos();
         printf("\033[1;35m========================================================================\033[0m\n");
         switch(choice)
         {
@@ -132,9 +137,10 @@ void practice(FILE *pos)
                         val=match(qnum);
                         if(!val)
                         {
-                            printf("\n \033[0;32m\t\t         !!!!  Answer matched  !!!!\n\033[0m\a");
+                            printf("\n \033[0;32m\t\t       !!!!  Answer matched  !!!!\n\033[0m\a");
                             if(!scoreupdate(pos))
                                 printf("\033[1;32m>>>>>>>>>>>>>>>>>>>>>>>>>>! Score Updated !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\033[0m\a");
+                                qnum++;
 
                         }
                     }
@@ -288,15 +294,15 @@ void showans(void)
 {
     switch(qnum)
     {
-        case 0: system("cat s0.txt");
+        case 0: system("cat a0.txt");
                 break;
-        case 1: system("cat s1.txt");
+        case 1: system("cat a1.txt");
                 break;
-        case 2: system("cat s2.txt");
+        case 2: system("cat a2.txt");
                 break;
-        case 3: system("cat s3.txt");
+        case 3: system("cat a3.txt");
                 break;
-        case 4: system("cat s4.txt");
+        case 4: system("cat a4.txt");
                 break;
         default: printf("\n Sorry we do not have anymore questions for you!!\n");
     }
@@ -321,6 +327,7 @@ void showstats(FILE *pos)
 
 void welcome(void)
 {
+    system("clear");
     printf("\t\033[1;37m##########################################################################\033[0m\n"
            "\t\033[1;37m##                                                                      ##\033[0m\n"
            "\t\033[1;37m##\033[0m\t\033[1;34m ##  ##  ###### ##      ##\033[0m   \033[1;31m#####  #####  #####   ###### \033[0m\t\033[1;37m##\033[0m\n"
