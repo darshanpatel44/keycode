@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 
 struct userdb
 {
@@ -12,39 +13,38 @@ struct userdb
 void practice(FILE *);         //done
 void showstats(FILE *);       //done
 void leaderboard(void);      //done
-int match(int);             //done
+int match(int);            //done
 int scoreupdate(FILE *);   //done
-void showques(int);       //done
+void showques(int);      //done
 void showans(void);      //done
 void welcome(void);     //done
 FILE* login(void);     //done
-FILE *getpos(void);
+FILE *getpos(void); //done
 
 char username[15];
 int qnum=0;
 
 int main()
 {
-    char choice;
+    int choice=1;
     char flag='y';
     FILE *pos;
     system("rm sol.c;rm sol;rm output.txt;touch userdata.dat");
     welcome();
     pos=login();
     showstats(pos);
-    here:
     do{
-        
         printf("  \033[1;35m==========================================================\033[0m\n\n"
             "\t \033[1;37m1) Practice                         3) Logout\n\n "
             "\t 2) Show Leaderboard                 4) Exit\n\n "
             
-            "\033[1;35m ==========================================================\033[0m\n"
-                "\t\033[7;37mYour Choice:\033[0m ");
-        scanf("%c",&choice);
+            "\033[1;35m ==========================================================\033[0m\n");
+        do{
+        printf("\n\t\033[7;37mYour Choice:\033[0m ");
+        scanf("%d",&choice);
+        }while(choice!=1&&choice!=2&&choice!=3&&choice!=4 );
         printf("  \033[1;35m==========================================================\033[0m\n");
 
-    if(choice==0 || choice==1 || choice==2 || choice==3 || choice==4 || choice==5 || choice==6 || choice==7 || choice==8 || choice==9){
         switch(choice)
         {
             case 1: practice(pos);
@@ -56,13 +56,10 @@ int main()
             case 4: return 0;
             default: printf("\033[1;31m-----------------Incorrect Input-------------------\033[0m\n");
                      break;
-        }}
-        else
-            goto here;
-    }
+        }
  /*       printf("\n Want to continue?(y/n): ");
         scanf("%c",&flag);*/
-    while(1);
+    }while(1);
     return 0;
 }
 
@@ -81,14 +78,18 @@ void practice(FILE *pos)
         printf("%s",    " \n\033[1;35m========================================================================\033[0m\n\n"
                         "  \033[1;37m1.) View question again             5.) Submit your code\n\n "
                         " 2.) Open text editor again          6.) Show answer\n\n"
-                        "  3.) Compile                         0.) Exit\n\n"
+                        "  3.) Compile                         0.) Go Back\n\n"
                         "  4.) Run with custom input\n\n\033[0m"
-                        "\033[1;35m========================================================================\033[0m\n"
+                        "\033[1;35m===================================="
+                        "====================================\033[0m\n");
                         //"5.) Submit your code\n "
                         //"6.) Show answer\n "
                         //"0.) Exit\n\n "
-                        "\t\033[7;37mYour Choice:\033[0m ");
+
+        do{
+        printf("\t\033[7;37mYour Choice:\033[0m ");
         scanf("%d",&choice);
+        }while(choice!=0&&choice!=1&&choice!=2&&choice!=3&&choice!=4&&choice!=5&&choice!=6);
         pos=getpos();
         printf("\033[1;35m========================================================================\033[0m\n");
         switch(choice)
